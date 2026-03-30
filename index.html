@@ -72,9 +72,8 @@
 
   .logo-mark img {
     width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
+    height: auto;
+    mix-blend-mode: lighten;
   }
 
   .logo-text {
@@ -121,9 +120,10 @@
   }
 
   .hero-logo {
-    width: 140px;
+    width: 320px;
     height: auto;
     margin-bottom: 2rem;
+    mix-blend-mode: lighten;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards 0.2s;
   }
@@ -324,7 +324,7 @@
   @media (max-width: 768px) {
     header { padding: 1rem 1.25rem; }
     .hero { padding: 7rem 1.25rem 3rem; }
-    .hero-logo { width: 110px; height: auto; }
+    .hero-logo { width: 220px; height: auto; }
     .projects { padding: 2rem 1.25rem 5rem; }
     .project-grid { grid-template-columns: 1fr; }
   }
@@ -343,7 +343,7 @@
 </header>
 
 <section class="hero">
-  <img src="logo.png" alt="Operator" class="hero-logo">
+  <img src="operator.png" alt="Operator" class="hero-logo">
   <h1>Tools that solve <em>real problems</em>, made by Operator.</h1>
   <div class="hero-cta">
     <a href="#projects">Browse Projects</a>
