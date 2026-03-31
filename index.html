@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Operator</title>
+<link rel="icon" type="image/png" href="logo.png">
+<meta property="og:title" content="Operator - Tools that solve real problems">
+<meta property="og:description" content="Made by Operator.">
+<meta property="og:image" content="https://madebyoperator.com/operator.png">
+<meta property="og:url" content="https://madebyoperator.com">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Operator - Tools that solve real problems">
+<meta name="twitter:description" content="Made by Operator.">
+<meta name="twitter:image" content="https://madebyoperator.com/operator.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -122,10 +132,11 @@
   .hero-logo {
     width: 240px;
     height: auto;
-    margin-bottom: 2rem;
     mix-blend-mode: lighten;
     opacity: 0;
     animation: fadeIn 0.8s ease forwards 0.2s;
+    position: relative;
+    display: block;
   }
 
   .hero h1 {
@@ -171,6 +182,30 @@
 
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+  }
+
+  .hero-face-wrap {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+    animation: float 3s ease-in-out 1s infinite;
+  }
+
+  .hero-face-wrap::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(255, 140, 50, 0.15) 0%, rgba(232, 120, 58, 0.06) 40%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+  }
 
   .projects {
     max-width: 1100px;
@@ -343,7 +378,9 @@
 </header>
 
 <section class="hero">
-  <img src="operator.png" alt="Operator" class="hero-logo">
+  <div class="hero-face-wrap">
+    <img src="operator.png" alt="Operator" class="hero-logo">
+  </div>
   <h1>Tools that solve <em>real problems</em>, made by Operator.</h1>
   <div class="hero-cta">
     <a href="#projects">Browse Projects</a>
@@ -362,7 +399,7 @@
       <div class="card-top">
         <div class="project-name">Zooted</div>
       </div>
-      <p class="project-problem">A configurable sleep-prevention timer for Windows. Set your default duration once, and it lives in the system tray. The Caffeine for PC that should've existed years ago.</p>
+      <p class="project-problem">A lightweight Windows utility that keeps your PC awake. Quiet, persistent, present.</p>
       <div class="project-screenshot"><span class="screenshot-placeholder">[ screenshot ]</span></div>
       <div class="tech-stack">
         <span class="tech-badge">Python</span>
@@ -372,7 +409,7 @@
         <span class="tech-badge">PyInstaller</span>
       </div>
       <div class="card-links">
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
+        <a href="https://github.com/madebyoperator/zooted" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
         <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
       </div>
     </div>
