@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Zooted",
+    "problem": "A lightweight Windows utility that keeps your PC awake. Quiet, persistent, present.",
+    "accent": "#6bc96f",
+    "tech": ["Python", "pystray", "tkinter", "ctypes", "PyInstaller"],
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/madebyoperator/zooted", "type": "github" },
+      { "label": "Download", "url": "#", "type": "download" }
+    ]
+  },
+  {
+    "name": "PhotoMove",
+    "problem": "Bulk photo deduplication and date-based sorting. Reads EXIF, filenames, and JSON sidecars to organize thousands of scattered photos into clean 6-month folders.",
+    "accent": "#3abce8",
+    "tech": ["Python", "Pillow", "SHA-256", "EXIF", "imagehash"],
+    "links": [
+      { "label": "GitHub", "url": "#", "type": "github" }
+    ]
+  },
+  {
+    "name": "Job Tracker",
+    "problem": "A real job search dashboard with pipeline visualization, application funnel analytics, and interview prep tracking. Because spreadsheets don't cut it.",
+    "accent": "#e8783a",
+    "tech": ["Python", "Streamlit", "SQLite", "Render"],
+    "links": [
+      { "label": "GitHub", "url": "#", "type": "github" },
+      { "label": "bigcashcommandcenter.com", "url": "#", "type": "external" }
+    ]
+  },
+  {
+    "name": "EM Job Board",
+    "problem": "A centralized job board for displaced emergency management and disaster recovery professionals. Aggregates niche postings that get buried on Indeed and LinkedIn.",
+    "accent": "#d4a241",
+    "tech": ["Next.js", "Supabase", "Tailwind", "JSearch API"],
+    "links": [
+      { "label": "GitHub", "url": "#", "type": "github" },
+      { "label": "Live Demo", "url": "#", "type": "external" }
+    ]
+  },
+  {
+    "name": "NSFW Scanner",
+    "problem": "Scans a directory and flags potentially NSFW images using ML classification. For when you need to audit a drive before selling it or handing it off.",
+    "accent": "#d46a6a",
+    "tech": ["Python", "ML Classification", "Desktop GUI"],
+    "links": [
+      { "label": "GitHub", "url": "#", "type": "github" }
+    ]
+  }
+]

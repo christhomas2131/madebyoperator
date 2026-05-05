@@ -1,387 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operator</title>
-<link rel="icon" type="image/png" href="logo.png">
-<meta property="og:title" content="Operator - Tools that solve real problems">
-<meta property="og:description" content="Made by Operator.">
-<meta property="og:image" content="https://madebyoperator.com/operator.png">
-<meta property="og:url" content="https://madebyoperator.com">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Operator - Tools that solve real problems">
-<meta name="twitter:description" content="Made by Operator.">
-<meta name="twitter:image" content="https://madebyoperator.com/operator.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0a0a0a;
-    --surface: #0f0f10;
-    --surface-hover: #151516;
-    --border: #222224;
-    --border-subtle: #1a1a1c;
-    --text: #f0ece6;
-    --text-muted: #9a9590;
-    --text-dim: #5e5a55;
-    --orange: #e8783a;
-    --orange-dim: rgba(232, 120, 58, 0.08);
-    --orange-glow: rgba(232, 120, 58, 0.12);
-    --cyan: #3abce8;
-    --cyan-dim: rgba(58, 188, 232, 0.08);
-    --cyan-glow: rgba(58, 188, 232, 0.12);
-    --green: #6bc96f;
-    --amber: #d4a241;
-    --rose: #d46a6a;
-    --font-display: 'Outfit', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-display);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-  }
-
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.25rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .logo-mark {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-  }
-
-  .logo-mark img {
-    width: 30px;
-    height: auto;
-    mix-blend-mode: lighten;
-  }
-
-  .logo-text {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text);
-  }
-
-  .header-nav a {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    transition: color 0.2s;
-  }
-
-  .header-nav a:hover { color: var(--orange); }
-
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 8rem 2rem 4rem;
-    position: relative;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(ellipse, var(--orange-glow) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .hero-logo {
-    width: 240px;
-    height: auto;
-    mix-blend-mode: lighten;
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards 0.2s;
-    position: relative;
-    display: block;
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    max-width: 700px;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.5s;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    background: linear-gradient(135deg, var(--orange), var(--cyan));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-cta {
-    margin-top: 2.5rem;
-    opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.8s;
-  }
-
-  .hero-cta a {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    padding: 0.7rem 1.5rem;
-    transition: all 0.3s ease;
-    letter-spacing: 0.05em;
-  }
-
-  .hero-cta a:hover {
-    border-color: var(--orange);
-    color: var(--orange);
-    box-shadow: 0 0 25px var(--orange-glow);
-  }
-
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-10px); }
-  }
-
-  .hero-face-wrap {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 2rem;
-    animation: float 3s ease-in-out 1s infinite;
-  }
-
-  .hero-face-wrap::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse, rgba(255, 140, 50, 0.15) 0%, rgba(232, 120, 58, 0.06) 40%, transparent 70%);
-    pointer-events: none;
-    border-radius: 50%;
-  }
-
-  .projects {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 2rem 8rem;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .section-header h2 {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-  }
-
-  .section-line { flex: 1; height: 1px; background: var(--border); }
-
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border-subtle);
-    padding: 1.5rem;
-    transition: all 0.35s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--card-accent, var(--orange)), transparent);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-  }
-
-  .project-card:hover {
-    border-color: var(--border);
-    background: var(--surface-hover);
-    transform: translateY(-2px);
-  }
-
-  .project-card:hover::before { opacity: 1; }
-
-  .card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.75rem;
-  }
-
-  .project-name {
-    font-family: var(--font-mono);
-    font-size: 1.05rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-  }
-
-
-
-  .project-problem {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    font-weight: 300;
-    margin-bottom: 1.1rem;
-    line-height: 1.6;
-  }
-
-  .project-screenshot {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: var(--bg);
-    border: 1px solid var(--border-subtle);
-    margin-bottom: 1.1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .project-screenshot img { width: 100%; height: 100%; object-fit: cover; }
-
-  .screenshot-placeholder {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-  }
-
-  .tech-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.1rem; }
-
-  .tech-badge {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    padding: 0.18rem 0.5rem;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    letter-spacing: 0.03em;
-  }
-
-  .card-links {
-    display: flex;
-    gap: 1rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .card-links a {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 0.35rem;
-    transition: color 0.2s ease;
-    letter-spacing: 0.03em;
-  }
-
-  .card-links a:hover { color: var(--orange); }
-  .card-links a svg { width: 13px; height: 13px; }
-
-  footer {
-    border-top: 1px solid var(--border-subtle);
-    padding: 2rem;
-    text-align: center;
-  }
-
-  .footer-text {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    letter-spacing: 0.1em;
-  }
-
-  @media (max-width: 768px) {
-    header { padding: 1rem 1.25rem; }
-    .hero { padding: 7rem 1.25rem 3rem; }
-    .hero-logo { width: 165px; height: auto; }
-    .projects { padding: 2rem 1.25rem 5rem; }
-    .project-grid { grid-template-columns: 1fr; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Operator</title>
+  <link rel="icon" type="image/png" href="/logo.png">
+  <meta property="og:title" content="Operator - Tools that solve real problems">
+  <meta property="og:description" content="Made by Operator.">
+  <meta property="og:image" content="https://madebyoperator.com/operator.png">
+  <meta property="og:url" content="https://madebyoperator.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Operator - Tools that solve real problems">
+  <meta name="twitter:description" content="Made by Operator.">
+  <meta name="twitter:image" content="https://madebyoperator.com/operator.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header>
   <a href="#" class="logo-mark">
-    <img src="logo.png" alt="Operator">
+    <img src="/logo.png" alt="Operator">
     <span class="logo-text">Operator</span>
   </a>
   <nav class="header-nav">
     <a href="#projects">Projects</a>
+    <span class="search-hint">/ to search</span>
   </nav>
 </header>
 
 <section class="hero">
   <div class="hero-face-wrap">
-    <img src="operator.png" alt="Operator" class="hero-logo">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Operator" class="hero-logo">
   </div>
-  <h1>Tools that solve <em>real problems</em>, made by Operator.</h1>
+  <h1 id="hero-title">Tools that solve <em>real problems</em>, made by Operator.</h1>
   <div class="hero-cta">
     <a href="#projects">Browse Projects</a>
   </div>
@@ -393,124 +47,28 @@
     <div class="section-line"></div>
   </div>
 
-  <div class="project-grid">
-
-    <div class="project-card" style="--card-accent: #6bc96f;">
-      <div class="card-top">
-        <div class="project-name">Zooted</div>
-      </div>
-      <p class="project-problem">A lightweight Windows utility that keeps your PC awake. Quiet, persistent, present.</p>
-      <div class="project-screenshot"><span class="screenshot-placeholder">[ screenshot ]</span></div>
-      <div class="tech-stack">
-        <span class="tech-badge">Python</span>
-        <span class="tech-badge">pystray</span>
-        <span class="tech-badge">tkinter</span>
-        <span class="tech-badge">ctypes</span>
-        <span class="tech-badge">PyInstaller</span>
-      </div>
-      <div class="card-links">
-        <a href="https://github.com/madebyoperator/zooted" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>
-      </div>
-    </div>
-
-    <div class="project-card" style="--card-accent: #3abce8;">
-      <div class="card-top">
-        <div class="project-name">PhotoMove</div>
-      </div>
-      <p class="project-problem">Bulk photo deduplication and date-based sorting. Reads EXIF, filenames, and JSON sidecars to organize thousands of scattered photos into clean 6-month folders.</p>
-      <div class="project-screenshot"><span class="screenshot-placeholder">[ screenshot ]</span></div>
-      <div class="tech-stack">
-        <span class="tech-badge">Python</span>
-        <span class="tech-badge">Pillow</span>
-        <span class="tech-badge">SHA-256</span>
-        <span class="tech-badge">EXIF</span>
-        <span class="tech-badge">imagehash</span>
-      </div>
-      <div class="card-links">
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-      </div>
-    </div>
-
-    <div class="project-card" style="--card-accent: #e8783a;">
-      <div class="card-top">
-        <div class="project-name">Job Tracker</div>
-      </div>
-      <p class="project-problem">A real job search dashboard with pipeline visualization, application funnel analytics, and interview prep tracking. Because spreadsheets don't cut it.</p>
-      <div class="project-screenshot"><span class="screenshot-placeholder">[ screenshot ]</span></div>
-      <div class="tech-stack">
-        <span class="tech-badge">Python</span>
-        <span class="tech-badge">Streamlit</span>
-        <span class="tech-badge">SQLite</span>
-        <span class="tech-badge">Render</span>
-      </div>
-      <div class="card-links">
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>bigcashcommandcenter.com</a>
-      </div>
-    </div>
-
-    <div class="project-card" style="--card-accent: #d4a241;">
-      <div class="card-top">
-        <div class="project-name">EM Job Board</div>
-      </div>
-      <p class="project-problem">A centralized job board for displaced emergency management and disaster recovery professionals. Aggregates niche postings that get buried on Indeed and LinkedIn.</p>
-      <div class="project-screenshot"><span class="screenshot-placeholder">[ screenshot ]</span></div>
-      <div class="tech-stack">
-        <span class="tech-badge">Next.js</span>
-        <span class="tech-badge">Supabase</span>
-        <span class="tech-badge">Tailwind</span>
-        <span class="tech-badge">JSearch API</span>
-      </div>
-      <div class="card-links">
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live Demo</a>
-      </div>
-    </div>
-
-    <div class="project-card" style="--card-accent: #d46a6a;">
-      <div class="card-top">
-        <div class="project-name">NSFW Scanner</div>
-      </div>
-      <p class="project-problem">Scans a directory and flags potentially NSFW images using ML classification. For when you need to audit a drive before selling it or handing it off.</p>
-      <div class="project-screenshot"><span class="screenshot-placeholder">[ screenshot ]</span></div>
-      <div class="tech-stack">
-        <span class="tech-badge">Python</span>
-        <span class="tech-badge">ML Classification</span>
-        <span class="tech-badge">Desktop GUI</span>
-      </div>
-      <div class="card-links">
-        <a href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>
-      </div>
-    </div>
-
+  <div class="project-grid" id="project-grid">
+    <!-- Projects injected by main.ts -->
   </div>
 </section>
+
+<div class="command-palette" id="command-palette">
+  <div class="cp-container">
+    <div class="cp-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" class="cp-input" id="cp-input" placeholder="Search projects or tech..." autocomplete="off">
+    </div>
+    <div class="cp-results" id="cp-results"></div>
+  </div>
+</div>
+
+<script type="application/ld+json" id="ld-json"></script>
+
 
 <footer>
   <p class="footer-text">Operator</p>
 </footer>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        entry.target.style.transitionDelay = `${i * 0.08}s`;
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.project-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(card);
-  });
-  const s = document.createElement('style');
-  s.textContent = '.project-card.visible { opacity: 1 !important; transform: translateY(0) !important; }';
-  document.head.appendChild(s);
-</script>
-
+<script type="module" src="/src/main.ts"></script>
 </body>
 </html>
